@@ -45,20 +45,23 @@ namespace CandidateTemplate.Constructs
                 AllowedOrigins = new[] { "*" },
                 MaxAge = 100
             });
-            
-                        string bucketArnString = bucket.BucketArn + "/*";
+
+            string bucketArnString = bucket.BucketArn + "/*";
 
             //Adding Resource Policy
             bucket.AddToResourcePolicy(
-                new PolicyStatement(new PolicyStatementProps{
+                new PolicyStatement(new PolicyStatementProps
+                {
                     Sid = "PublicReadForGetBucketObjects",
                     Effect = Effect.ALLOW,
                     //AWS discourages the use of 'StarPrinicipal'
-                    Principals = new [] {new StarPrincipal()},
-                    Actions = new [] {"s3:GetObject"},
-                    Resources = new [] {bucketArnString}
+                    Principals = new[] { new StarPrincipal() },
+                    Actions = new[] { "s3:GetObject" },
+                    Resources = new[] { bucketArnString }
                 })
             );
+            
+
         }
     }
 }
